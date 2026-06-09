@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frise chronologique Nodelya</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #ffffff; padding: 0; }
+
+  .timeline { position: relative; padding: 40px 16px 32px; max-width: 720px; margin: 0 auto; }
+  .tl-title { text-align: center; font-size: 18px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .tl-sub { text-align: center; font-size: 12px; color: #888; margin-bottom: 8px; }
+  .hint { text-align: center; font-size: 11px; color: #aaa; margin-bottom: 36px; }
+
+  .tl-track { position: relative; display: flex; flex-direction: column; align-items: center; }
+  .tl-line { position: absolute; left: 50%; top: 0; bottom: 0; width: 1.5px; background: #e0e0e0; transform: translateX(-50%); z-index: 0; }
+
+  .tl-item { position: relative; width: 100%; display: flex; align-items: flex-start; margin-bottom: 24px; z-index: 1; }
+  .tl-item:nth-child(odd)  { flex-direction: row; }
+  .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+  .tl-dot-wrap { position: absolute; left: 50%; transform: translateX(-50%); top: 13px; z-index: 2; }
+  .tl-dot { width: 16px; height: 16px; border-radius: 50%; border: 3px solid #ffffff; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 0 1.5px #ccc; }
+  .tl-dot:hover { transform: scale(1.4); box-shadow: 0 0 0 2px #999; }
+
+  .tl-side { width: calc(50% - 30px); padding-top: 8px; }
+  .tl-item:nth-child(odd)  .tl-side { padding-right: 16px; text-align: right; }
+  .tl-item:nth-child(even) .tl-side { padding-left: 16px; text-align: left; }
+  .tl-date { font-size: 12px; font-weight: 600; color: #555; }
+
+  .tl-card { width: calc(50% - 30px); border-radius: 10px; border: 1px solid #ebebeb; background: #fafafa; padding: 10px 14px; transition: border-color 0.2s, background 0.2s; cursor: default; }
+  .tl-item:nth-child(odd)  .tl-card { margin-left: auto; }
+  .tl-item:nth-child(even) .tl-card { margin-right: auto; }
+  .tl-item:hover .tl-card { border-color: #d0d0d0; background: #ffffff; }
+
+  .tl-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 20px; margin-bottom: 6px; letter-spacing: 0.02em; }
+
+  .tl-card-inner { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, opacity 0.3s ease; opacity: 0; }
+  .tl-card-inner.open { max-height: 150px; opacity: 1; }
+
+  .tl-card-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 4px; }
+  .tl-card-desc  { font-size: 12px; color: #666; line-height: 1.55; }
+
+  @media (prefers-color-scheme: dark) {
+    body { background: #1a1a1a; }
+    .tl-title { color: #f0f0f0; }
+    .tl-sub, .hint { color: #777; }
+    .tl-line { background: #333; }
+    .tl-dot { border-color: #1a1a1a; box-shadow: 0 0 0 1.5px #555; }
+    .tl-date { color: #aaa; }
+    .tl-card { background: #242424; border-color: #333; }
+    .tl-item:hover .tl-card { background: #2a2a2a; border-color: #444; }
+    .tl-card-title { color: #f0f0f0; }
+    .tl-card-desc  { color: #aaa; }
+  }
+</style>
+</head>
+<body>
+<div class="timeline">
+  <p class="tl-title">Frise chronologique Nodelya</p>
+  <p class="tl-sub">2020 → 2026</p>
+  <p class="hint">Survolez un point pour afficher l'événement</p>
+
+  <div class="tl-track">
+    <div class="tl-line"></div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">Nov. 2020</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#0F6E56"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#E1F5EE;color:#085041">Fondation</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Naissance d'ICECS HDF</p>
+          <p class="tl-card-desc">Création par Sébastien Velu et Jonathan Arnal à Beauvais (60). Spécialisation maîtrise d'œuvre d'exécution et OPC.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2021</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#185FA5"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#E6F1FB;color:#0C447C">Premier exercice</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Lancement & premiers chantiers</p>
+          <p class="tl-card-desc">CA de 440 k€. Constitution d'une première équipe. Premiers chantiers en Hauts-de-France.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2022 – 2023</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#854F0B"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#FAEEDA;color:#633806">Décollage</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Croissance & structuration</p>
+          <p class="tl-card-desc">CA 2022/2023 : 885 k€. Décrochage de chantiers structurants. Réputation établie auprès des bailleurs sociaux et promoteurs régionaux.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2023</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#534AB7"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#EEEDFE;color:#26215C">Acquisition</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Rachat d'A3C Concept</p>
+          <p class="tl-card-desc">Acquisition de A3C Concept, formation de l'entité ICECS HDF – A3C. Élargissement des services en économie de la construction et BET.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2023 – 2024</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#3B6D11"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#EAF3DE;color:#173404">Forte croissance</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">CA prévisionnel 2,8 M€</p>
+          <p class="tl-card-desc">Renforcement de l'équipe (~20 collaborateurs). Diversification clients. Ancrage régional confirmé.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2024</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#993C1D"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#FAECE7;color:#4A1B0C">Rebrand</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Naissance de Nodelya</p>
+          <p class="tl-card-desc">Changement de nom : ICECS HDF – A3C devient Nodelya. Nouvelle identité pour porter l'ambition du groupe.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="tl-item">
+      <div class="tl-side"><p class="tl-date">2026</p></div>
+      <div class="tl-dot-wrap"><div class="tl-dot" style="background:#5F5E5A"></div></div>
+      <div class="tl-card">
+        <span class="tl-badge" style="background:#F1EFE8;color:#2C2C2A">Vision Orbit</span>
+        <div class="tl-card-inner">
+          <p class="tl-card-title">Projet stratégique Vision Orbit</p>
+          <p class="tl-card-desc">Ouverture d'une agence Nord. Expansion géographique et consolidation de l'offre de services.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  document.querySelectorAll('.tl-item').forEach(item => {
+    const inner = item.querySelector('.tl-card-inner');
+    item.addEventListener('mouseenter', () => inner.classList.add('open'));
+    item.addEventListener('mouseleave', () => inner.classList.remove('open'));
+    item.addEventListener('touchstart', (e) => { e.preventDefault(); inner.classList.toggle('open'); });
+  });
+</script>
+</body>
+</html>
